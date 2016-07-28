@@ -847,7 +847,11 @@ end
 display('Movie generated successfully! Check the overlap.');
 TempMovie=handles.movieStore.Movie{CurrentNum};
 delete([Filepath,Filename]);
-save([Filepath,Filename],'TempMovie','Order','-v7.3');
+MovieInfo = struct();
+MovieInfo.PlainMovieInfo.SpotInfo.SizeTrail = OrderFrame;
+MovieInfo.PlainMovieInfo.SpotInfo.Order = Order;
+MovieInfo.PlainMovieInfo.FreshRate = handles.frames;
+save([Filepath,Filename],'TempMovie','MovieInfo','-v7.3');
 HashID=GetMD5(TempMovie,'bin');
 MovieOverlap=0;
 if (handles.movieNum>0)
